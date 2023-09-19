@@ -22,7 +22,6 @@ function Login( { onLogged } : Props ) {
             console.log(response)
         }).catch(function (error:any){
             console.log(error)
-
         })
 
     }

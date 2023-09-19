@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Trumas;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class TurmaController extends Controller
      */
     public function index()
     {
-        //
+        return Trumas::all();
     }
 
     /**
@@ -20,7 +21,20 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $turmas = new Trumas([
+            'nome' => $request->nome,
+            'CodTurma' => $request->cpf,
+            'dtInicio' => $request->sexo,
+            'dtFim' => $request->dtNascimento,
+            'qtAlunos' => $request->email,
+        ]);
+
+        try {
+            $turmas->save();
+            return array('resp' => 's', 'turmas' => $turmas);
+        } catch (\Throwable $th) {
+            return array('resp' => 'n', 'msg' => 'Turma já cadastrado');
+        }
     }
 
     /**
@@ -28,7 +42,12 @@ class TurmaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $turma = Trumas::find($id);
+        try {
+            return array('resp' => 's', 'turma' => $turma);
+        } catch (\Throwable $th) {
+            return array('resp' => 'n', 'msg' => 'Turma não encontrada');
+        }
     }
 
     /**
@@ -36,7 +55,19 @@ class TurmaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $turma = Trumas::find($id);
+
+        $turma->CodTurma = ($request->CodTurma == '') ? $turma->CodTurma : $request->CodTurma;
+        $turma->dtInicio = ($request->dtInicio == '') ? $turma->dtInicio : $request->dtInicio;
+        $turma->dtFim    = ($request->dtFim == '')    ? $turma->dtFim    : $request->dtFim;
+        $turma->qtAlunos = ($request->qtAlunos == '') ? $turma->qtAlunos : $request->qtAlunos;
+        
+        try {
+            $turma->save();
+            return array('resp' => 's');
+        } catch (\Throwable $th) {
+            return array('resp' => 'n');
+        }
     }
 
     /**
@@ -44,6 +75,12 @@ class TurmaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $turma = Trumas::find($id);
+            $turma->delete();
+            return array('resp' => 's');
+        } catch (\Throwable $th) {
+            return array('resp' => 'n', 'msg' => 'Erro ao excluir registro');
+        }
     }
 }

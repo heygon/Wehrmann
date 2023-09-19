@@ -1,2 +1,2 @@
-const api = 'http://localhost:8000'
+const api = 'http://localhost:8000/api'
 export default api

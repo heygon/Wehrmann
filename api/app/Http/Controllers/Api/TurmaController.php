@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Trumas;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateTurmas;
 use Illuminate\Http\Request;
 
 class TurmaController extends Controller
@@ -19,7 +20,7 @@ class TurmaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateTurmas $request)
     {
         $turmas = new Trumas([
             'nome' => $request->nome,
@@ -53,7 +54,7 @@ class TurmaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateTurmas $request, string $id)
     {
         $turma = Trumas::find($id);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Alunos;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateAluno;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -19,7 +20,7 @@ class AlunoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateAluno $request)
     {
         $aluno = new Alunos([
             'nome' => $request->nome,
@@ -54,7 +55,7 @@ class AlunoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateAluno $request, string $id)
     {
         $aluno = Alunos::find($id);
 

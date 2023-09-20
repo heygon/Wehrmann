@@ -23,9 +23,9 @@ class StoreUpdateTurmas extends FormRequest
     {
         return [
             'CodTurma' => 'required|string|max:255|min:3|unique:turmas',
-            'dtInicio' => 'required|email|max:10|min:3',
-            'dtFim' => 'required|email|max:10|min:3',
-            'qtAlunos' => 'required|email|max:10|min:1'
+            'dtInicio' => 'required|string|max:10|min:3',
+            'dtFim' => 'required|string|max:10|min:3',
+            'qtAlunos' => 'required'
         ];
     }
 }

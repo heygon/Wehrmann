@@ -22,12 +22,12 @@ class TurmaController extends Controller
      */
     public function store(StoreUpdateTurmas $request)
     {
+        
         $turmas = new Trumas([
-            'nome' => $request->nome,
-            'CodTurma' => $request->cpf,
-            'dtInicio' => $request->sexo,
-            'dtFim' => $request->dtNascimento,
-            'qtAlunos' => $request->email,
+            'CodTurma' => $request->CodTurma,
+            'dtInicio' => $request->dtInicio,
+            'dtFim' => $request->dtFim,
+            'qtAlunos' => $request->qtAlunos,
         ]);
 
         try {
